@@ -6,4 +6,4 @@ Cryptopals is is a great way to learn cryptography hands-on, so yeah let's get t
 
 | Challenge   | File           | Remarks         |
 | ---------   | -------------  | -----           |
-| 1.          | <insert link>  | Normal level    |
+| 1.          | <insert link>  | Easy level      |
