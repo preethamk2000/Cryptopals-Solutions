@@ -118,7 +118,7 @@ def single_char_xor_attack(byteString,keyOnly=False):
     else:
         for i in np.argsort(top10_scores)[::-1]:
         # print(top10_text[i]) 
-            yield top10_text[i][0]
+            yield top10_text[i][1]
         # rtnString += top10_text[i][1]
         # break
 
