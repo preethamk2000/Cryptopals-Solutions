@@ -9,6 +9,7 @@ printable_refined = printable[0:len(printable)-5]
 
 # Accepts a string and returns padded plaintext as bytearray
 def pkcs7_padding(plaintext,blocksize=8):
+    # Change to bytes here
     padded_text = plaintext.encode('ascii')
     if len(plaintext)%blocksize != 0:
         padding_length = blocksize-len(plaintext)%blocksize
