@@ -1,5 +1,6 @@
 from cryptography.hazmat.primitives.ciphers import Cipher,algorithms,modes
 from cryptography.hazmat.backends import default_backend
+from q9 import pkcs7_padding,pkcs7_padding_remove
 import base64
 
 class AES_ECB:
@@ -8,8 +9,10 @@ class AES_ECB:
 
     def __init__(self,key):
         self.cipher = Cipher(algorithm=algorithms.AES(key),mode=modes.ECB(),backend=self.backend)
+        self.keylen = len(key)
     
     def encrypt(self,plaintext):
+        plaintext = pkcs7_padding(plaintext,self.keylen)
         encryptor = self.cipher.encryptor()
         ciphertext = encryptor.update(plaintext) + encryptor.finalize()
         return ciphertext
@@ -17,6 +20,7 @@ class AES_ECB:
     def decrypt(self,ciphertext):
         decryptor = self.cipher.decryptor()
         plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+        plaintext = pkcs7_padding_remove(plaintext,self.keylen)
         return plaintext
 
 
