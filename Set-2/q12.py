@@ -52,7 +52,6 @@ def crack(oracle,unknown_text_length):
     no_blocks = ceil(unknown_text_length/16)
     plaintext = b""
     result_string = b""
-    append = b""
 
     for i in range(no_blocks):
         # length is 15 because 1 less than block size see comment below in loop
@@ -86,6 +85,7 @@ def length_guess(oracle):
         if(cipher_len>cipher_len_prev):
             keysize = cipher_len - cipher_len_prev
             break
+        cipher_len_prev = cipher_len
     # The unknown text length is easy to calculate when our plaintext + that string exactly forms a string of multiples of keysize
     unknown_text_length = cipher_len_prev - (i-1)
     return (keysize,unknown_text_length)
