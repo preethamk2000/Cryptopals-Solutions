@@ -85,6 +85,7 @@ def length_guess(oracle):
         if(cipher_len>cipher_len_prev):
             keysize = cipher_len - cipher_len_prev
             break
+        # Actually the line below is not needed since the cipher length changes only once here and that change is the blocksize
         cipher_len_prev = cipher_len
     # The unknown text length is easy to calculate when our plaintext + that string exactly forms a string of multiples of keysize
     unknown_text_length = cipher_len_prev - (i-1)
