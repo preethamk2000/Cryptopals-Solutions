@@ -1,5 +1,4 @@
 from q9 import pkcs7_padding_remove
-import sys
 
 def pkcs7_padding_validator(padded_text,blocksize=8):
     lastchar_int = padded_text[-1]
