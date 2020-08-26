@@ -35,6 +35,11 @@ class AES_CBC:
             # intermediate_plaintext_block = "".encode('ascii')
             intermediate_plaintext_block = self.ecb_scheme.decrypt(ciphertext_block)
             plaintext_block = "".encode('ascii')
+            # This below condition is for the last block
+            if i == no_of_blocks-1:
+                # Remove padding only for final block
+                intermediate_plaintext_block = self.ecb_scheme.decrypt(ciphertext_block,True)
+                blocksize = min(blocksize,len(intermediate_plaintext_block))
             for j in range(blocksize):
                 # intermediate_plaintext_block += bytes( [ ciphertext_block[j]^key[j] ] )
                 plaintext_block += bytes( [ intermediate_plaintext_block[j]^prev[j] ] )

@@ -17,10 +17,11 @@ class AES_ECB:
         ciphertext = encryptor.update(plaintext) + encryptor.finalize()
         return ciphertext
     
-    def decrypt(self,ciphertext):
+    def decrypt(self,ciphertext,final_block=False):
         decryptor = self.cipher.decryptor()
         plaintext = decryptor.update(ciphertext) + decryptor.finalize()
-        plaintext = pkcs7_padding_remove(plaintext,self.keylen)
+        if final_block==True:
+            plaintext = pkcs7_padding_remove(plaintext,self.keylen)
         return plaintext
 
 

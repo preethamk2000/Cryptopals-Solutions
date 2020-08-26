@@ -24,6 +24,8 @@ def pkcs7_padding(plaintext,blocksize=8):
 def pkcs7_padding_remove(padded_text,blocksize=8):
     # Since it is in bytes, the individual elements are already in INT
     lastchr_int = padded_text[::-1][0]
+    if lastchr_int >= blocksize:
+        return padded_text
     # Here Im just checking if the last hex is a printable character and if it is then it must be a block with a multiple of keysize since even with keysize of 32 bytes all the characters do not have meaning when printable
     if(printable_refined.find( chr(lastchr_int) )!=-1):
         return padded_text
